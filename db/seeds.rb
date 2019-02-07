@@ -20,7 +20,16 @@ end
 
 
 5.times do
-  category =  Category.create!(name: Faker::HitchhikersGuideToTheGalaxy.planet )
+  category =  Category.create([{ name: 'today' },
+                               { name: 'trending' },
+                               { name: 'sports' },
+                               { name: 'relationships'},
+                               { name: 'politics' },
+                               { name: 'travel' },
+                               { name: 'science'},
+                               { name: 'literature' },
+                               { name: 'economy' }])
+
 end
 
 10.times do
