@@ -15,6 +15,10 @@ gem 'puma', '~> 3.11'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# Use JWT for encrypting access tokens
+gem 'jwt'
+# Use dotenv-rails for ENV variable management
+gem 'dotenv-rails', groups: [:development, :test]
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

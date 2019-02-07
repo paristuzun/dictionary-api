@@ -10,4 +10,12 @@ class User < ActiveRecord::Base
   def admin?
 		self.role.to_s.to_sym == :admin
 	end
+
+  def authenticate(plaintext_password)
+    if BCrypt::Password.new(self.password_digest) == plaintext_password
+      self
+    else
+      false
+    end
+  end
 end

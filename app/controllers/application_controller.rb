@@ -1,29 +1,24 @@
 class ApplicationController < ActionController::API
 
-
   def current_user
-    @current_user ||=User.find(session[:user_id]) if session[:user_id]
-    rescue ActiveRecord::RecordNotFound
+    token = request.headers['Authorization']
+    payload = JWT.decode(token, ENV['SECRET'], true, algorithm: 'HS256')
+    user_id = decoded_token[0]['user_id']
+    User.find_by(id: user_id)
+  rescue JWT::DecodeError
+    nil
   end
 
   def logged_in?
     !!current_user
   end
 
-  def require_user
-    if !logged_in?
-      flash[:error] = "Must be logged in to do that"
-      redirect_to root_path
-    end
+  def encode_token(payload)
+    JWT.encode(payload, ENV['SECRET'], 'HS256')
   end
 
-  def require_admin
-    access_denied unless logged_in? and current_user.admin?
-  end
-
-  def access_denied
-    flash[:error] = "You can't do that"
-    redirect_to root_path
+  def authorized
+    render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
   end
 
 end
