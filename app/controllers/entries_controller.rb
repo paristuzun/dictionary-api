@@ -1,22 +1,23 @@
 class EntriesController < ApplicationController
-  before_action :authorized
+  # before_action :authorized
+
+  before_action :set_entry, only: [:show, :update, :vote]
+  before_action :authorized, except: [:index, :show]
 
   def index
   end
 
-  def new
-  end
 
   def create
-    @topic = Topic.find_by(slug: params[:topic_id])
+    @topic = Topic.find(params[:topic_id])
     @entry = @topic.entries.build(params.require(:entry).permit(:body))
     @entry.user = current_user
     if @entry.save
-      flash[:notice] = "Your entry was topiced"
-      redirect_to topic_path(@topic)
+      render json: @entry.to_json, status: :created
     else
-      @topic.entries.reload
-      render 'topics/show'
+      # byebug
+      render json: { errors: @entry.errors.full_messages }, status: :unprocessable_entity
+
     end
   end
 
@@ -36,6 +37,15 @@ class EntriesController < ApplicationController
         }
       end
     end
+  end
+
+  private
+  def entry_params
+    params.require(:entry).permit(:body, :user_id, :topic_id, :votes_count )
+  end
+
+  def set_entry
+    @entry = Entry.find_by(params[:id])
   end
 
 end

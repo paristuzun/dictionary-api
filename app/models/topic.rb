@@ -1,6 +1,5 @@
 class Topic < ActiveRecord::Base
   validates :title, presence: true
-  validates :description, presence: true, length: {minimum: 5}
   belongs_to :user
   has_many :entries, dependent: :destroy
   has_many :topic_categories
