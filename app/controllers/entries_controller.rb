@@ -1,5 +1,8 @@
 class EntriesController < ApplicationController
-  before_action :require_user
+  before_action :authorized
+
+  def index
+  end
 
   def new
   end

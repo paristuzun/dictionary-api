@@ -5,10 +5,21 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  # def create
+  #   @user = User.new(user_params)
+  #   if @user.save
+  #    render json: @user, status: :created
+  #   else
+  #    render json: @user.errors.full_messages, status: :unprocessable_entity
+  #   end
+  # end
+
   def create
     @user = User.new(user_params)
-    if @user.save
-     render json: @user, status: :created
+    if @user.valid?
+      @user.save
+      @token = encode_token({ user_id: @user.id})
+     render json: { user: @user, jwt: @token, message: 'success' }, status: :created
     else
      render json: @user.errors.full_messages, status: :unprocessable_entity
     end

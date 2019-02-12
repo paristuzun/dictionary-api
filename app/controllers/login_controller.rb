@@ -1,6 +1,7 @@
 class LoginController < ApplicationController
   def create
     @user = User.find_by(username: params[:username])
+    # byebug
     if @user && @user.authenticate(params[:password])
       token = encode_token({ user_id: @user.id })
       render json: { token: token, username: @user.username }, status: :ok

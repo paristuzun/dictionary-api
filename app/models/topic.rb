@@ -5,7 +5,6 @@ class Topic < ActiveRecord::Base
   has_many :entries, dependent: :destroy
   has_many :topic_categories
   has_many :categories, through: :topic_categories
-  has_many :votes, as: :voteable
   before_save :generate_slug
 
   def generate_slug

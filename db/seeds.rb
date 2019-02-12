@@ -18,19 +18,15 @@ Entry.destroy_all
 end
 
 
-
-5.times do
-  category =  Category.create([{ name: 'today' },
-                               { name: 'trending' },
-                               { name: 'sports' },
-                               { name: 'relationships'},
-                               { name: 'politics' },
-                               { name: 'travel' },
-                               { name: 'science'},
-                               { name: 'literature' },
-                               { name: 'economy' }])
-
-end
+Category.create([{ name: 'today' },
+                 { name: 'trending' },
+                 { name: 'sports' },
+                 { name: 'relationships'},
+                 { name: 'politics' },
+                 { name: 'travel' },
+                 { name: 'science'},
+                 { name: 'literature' },
+                 { name: 'economy' }])
 
 10.times do
   topic = Topic.create!(description: Faker::GameOfThrones.quote,
