@@ -98,17 +98,3 @@ topic_id: thirddate.id, user_id: paris.id)
 
 Entry.create!(body: "1. A man who behaves in an overly familiar way and is always replying to the social media messages of a woman he doesn't know or is barely acquainted with. 2. An annoying man who replies to social media messages, in general - whether this annoyance is due to a perceived know-it-all attitude, excessive familiarity, banal arguments that the annoyed user doesn't feel compelled to reply to again and again, or violation of some imagined pecking order.",
 topic_id: replyguy.id, user_id: paris.id)
-
-
-# 10.times do
-#   topic = Topic.create!(description: Faker::GameOfThrones.quote,
-#               title: Faker::Lorem.sentence(rand(4) + 1, true),
-#               user_id: User.all.sample.id)
-# end
-#
-#
-# 10.times do
-#   entry =  Entry.create!(body: Faker::GameOfThrones.quote,
-#                 user_id: User.all.sample.id,
-#                 topic_id: Topic.all.sample.id)
-# end
