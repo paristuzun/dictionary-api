@@ -11,11 +11,11 @@ Category.destroy_all
 Topic.destroy_all
 Entry.destroy_all
 
-10.times do
-  user =  User.create!(
-               username: Faker::Internet.username,
-               password: Faker::Internet.password(10, 20, true))
-end
+# 10.times do
+#   user =  User.create!(
+#                username: Faker::Internet.username,
+#                password: Faker::Internet.password(10, 20, true))
+# end
 
  paris = User.create!(
              username: "Paris",
