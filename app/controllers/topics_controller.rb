@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :update]
-  before_action :authorized, except: [:index, :show]
+  # before_action :set_topic, only: [:show, :update]
+  # before_action :authorized, except: [:index, :show]
 
   def index
     @topics = Topic.all
@@ -26,21 +26,7 @@ class TopicsController < ApplicationController
 
     @topic = Topic.find(params[:id])
 
-    # topic_json = {
-    #   id: topic.id,
-    #   title: topic.title,
-    #   description: topic.description,
-    #   url: topic.url,
-    #   slug: topic.slug,
-    #   entries: topic.entries.map do |entry|
-    #     {
-    #       id: entry.id,
-    #       body: entry.body,
-    #       user_id: entry.user_id,
-    #       votes_count: entry.votes_count
-    #     }
-    #   end
-    # }
+  
     render json: @topic.to_json(include: :entries), status: :ok
 
   end
@@ -49,7 +35,8 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
     @topic.user = current_user
     if @topic.save
-      render json: @topic.to_json(include: :entries), status: :created
+      # render json: @topic.to_json(include: :entries), status: :created
+      render json: @topic.to_json, status: :created
     else
       # byebug
       render json: { errors: @topic.errors.full_messages }, status: :unprocessable_entity

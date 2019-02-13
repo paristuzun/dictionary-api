@@ -28,15 +28,15 @@ Category.create([{ name: 'today' },
                  { name: 'literature' },
                  { name: 'economy' }])
 
-10.times do
-  topic = Topic.create!(description: Faker::GameOfThrones.quote,
-              title: Faker::Lorem.sentence(rand(4) + 1, true),
-               user_id: User.all.sample.id)
-end
-
-
-10.times do
-  entry =  Entry.create!(body: Faker::GameOfThrones.quote,
-                user_id: User.all.sample.id,
-                topic_id: Topic.all.sample.id)
-end
+# 10.times do
+#   topic = Topic.create!(description: Faker::GameOfThrones.quote,
+#               title: Faker::Lorem.sentence(rand(4) + 1, true),
+#               user_id: User.all.sample.id)
+# end
+#
+#
+# 10.times do
+#   entry =  Entry.create!(body: Faker::GameOfThrones.quote,
+#                 user_id: User.all.sample.id,
+#                 topic_id: Topic.all.sample.id)
+# end
